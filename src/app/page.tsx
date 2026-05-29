@@ -111,15 +111,43 @@ export default function Home() {
           </p>
         </div>
 
-        <form className="form">
-          <input placeholder="Imię i nazwisko" />
-          <input placeholder="E-mail" type="email" />
-          <input placeholder="Telefon" />
-          <input placeholder="Planowany termin" />
-          <textarea placeholder="Wiadomość" rows={5} />
-          <button type="button">Wyślij zapytanie</button>
-        </form>
-      </section>
+        <form
+  className="form"
+  action="mailto:kruczy.borek@gmail.com"
+  method="post"
+  encType="text/plain"
+>
+  <input
+    name="name"
+    placeholder="Imię i nazwisko"
+  />
+
+  <input
+    name="email"
+    placeholder="E-mail"
+    type="email"
+  />
+
+  <input
+    name="phone"
+    placeholder="Telefon"
+  />
+
+  <input
+    name="date"
+    placeholder="Planowany termin"
+  />
+
+  <textarea
+    name="message"
+    placeholder="Wiadomość"
+    rows={5}
+  />
+
+  <button type="submit">
+    Wyślij zapytanie
+  </button>
+</form>
 
       <section id="kontakt" className="section contact">
         <p className="sectionKicker">Kontakt</p>
