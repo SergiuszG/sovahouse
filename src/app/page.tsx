@@ -1,10 +1,10 @@
 const galleryImages = [
   "https:/front domku.jpg",
-  "https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1200&q=80",
+  "https:/Wejscie i furtka.jpg",
+  "https:/jadalnia 1.jpg",
+  "https:/jadalnia widok od kuchni.jpg",
+  "https:/kuchnia 1.jpg",
+  "https:/front domku.jpg",
 ];
 
 export default function Home() {
