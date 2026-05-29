@@ -148,7 +148,7 @@ export default function Home() {
     Wyślij zapytanie
   </button>
 </form>
-
+</section>
       <section id="kontakt" className="section contact">
         <p className="sectionKicker">Kontakt</p>
         <h2>Kontakt</h2>
