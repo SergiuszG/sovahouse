@@ -113,9 +113,8 @@ export default function Home() {
 
       <form
   className="form"
-  action="mailto:kruczy.borek@gmail.com"
-  method="post"
-  encType="text/plain"
+  action="https://formspree.io/f/xojbrolp"
+  method="POST"
 >
   <input
     name="name"
