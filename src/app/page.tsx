@@ -1,55 +1,132 @@
+const galleryImages = [
+  "https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?auto=format&fit=crop&w=1200&q=80",
+  "https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=1200&q=80",
+  "https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=1200&q=80",
+  "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80",
+  "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80",
+  "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1200&q=80",
+];
+
 export default function Home() {
   return (
-    <main
-      style={{
-        minHeight: "100vh",
-        background: "#0f1720",
-        color: "white",
-        fontFamily: "Arial, sans-serif",
-      }}
-    >
-      <section
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          minHeight: "100vh",
-          textAlign: "center",
-          padding: "2rem",
-        }}
-      >
-        <img
-          src="/Logo Sova House.png"
-          alt="Sova House"
-          style={{
-            width: "180px",
-            marginBottom: "2rem",
-          }}
-        />
+    <main className="site">
+      <nav className="nav">
+        <img src="/Logo Sova House.png" alt="Sova House" className="navLogo" />
+        <div className="navLinks">
+          <a href="#galeria">Galeria</a>
+          <a href="#atrakcje">Lokalne atrakcje</a>
+          <a href="#rejsy">Rejsy</a>
+          <a href="#instrukcja">Instrukcja</a>
+          <a href="#rezerwacja">Rezerwacja</a>
+          <a href="#kontakt">Kontakt</a>
+        </div>
+      </nav>
 
-        <h1
-          style={{
-            fontSize: "4rem",
-            marginBottom: "1rem",
-            letterSpacing: "0.1em",
-          }}
-        >
-          Sova House
-        </h1>
+      <section className="hero">
+        <div className="heroOverlay" />
+        <div className="heroContent">
+          <img src="/Logo Sova House.png" alt="Sova House" className="heroLogo" />
+          <p className="eyebrow">Kruczy Borek · las · cisza · woda</p>
+          <h1>Sova House</h1>
+          <p className="lead">
+            Domek w lesie do wynajęcia. Miejsce na weekendowy reset, spokojny
+            odpoczynek i małą ucieczkę od codziennego hałasu.
+          </p>
+          <div className="heroActions">
+            <a href="#rezerwacja" className="buttonPrimary">Zapytaj o termin</a>
+            <a href="#galeria" className="buttonGhost">Zobacz galerię</a>
+          </div>
+        </div>
+      </section>
 
-        <p
-          style={{
-            maxWidth: "700px",
-            fontSize: "1.2rem",
-            lineHeight: "1.8",
-            opacity: 0.85,
-          }}
-        >
-          Domek w lesie do wynajęcia w Kruczym Borku.
-          <br />
-          Cisza, drewno, natura i odpoczynek blisko Zalewu Zegrzyńskiego.
+      <section className="intro section">
+        <div>
+          <p className="sectionKicker">O miejscu</p>
+          <h2>Leśny azyl blisko Zalewu Zegrzyńskiego</h2>
+        </div>
+        <p>
+          Sova House to kameralny domek położony w Kruczym Borku. Strona powstała
+          jako spokojna baza informacji dla gości: zdjęcia, atrakcje w okolicy,
+          rejsy, instrukcja obsługi domu i kontakt w sprawie rezerwacji.
         </p>
+      </section>
+
+      <section id="galeria" className="section">
+        <div className="sectionHeader">
+          <p className="sectionKicker">Galeria</p>
+          <h2>Zdjęcia, które później podmienisz na własne</h2>
+        </div>
+        <div className="galleryGrid">
+          {galleryImages.map((image, index) => (
+            <img key={image} src={image} alt={`Sova House galeria ${index + 1}`} />
+          ))}
+        </div>
+      </section>
+
+      <section id="atrakcje" className="section split">
+        <div>
+          <p className="sectionKicker">Lokalne atrakcje</p>
+          <h2>Mapa miejsc wartych zobaczenia</h2>
+          <p>
+            Tu znajdzie się opis lokalnych atrakcji, tras spacerowych, miejsc nad
+            wodą, restauracji, punktów widokowych i Twoja własna mapa Google My Maps.
+          </p>
+        </div>
+        <div className="placeholderCard">
+          <span>Tu będzie Twoja mapa</span>
+          <small>miejsce na Google My Maps</small>
+          <div className="qrBox">QR</div>
+          <small>miejsce na kod QR do mapy</small>
+        </div>
+      </section>
+
+      <section id="rejsy" className="section feature">
+        <p className="sectionKicker">Rejsy</p>
+        <h2>Rejsy po Zalewie Zegrzyńskim i Narwi</h2>
+        <p>
+          Osobna sekcja na opis rejsów, propozycje tras, zdjęcia łodzi, warunki,
+          terminy oraz praktyczne informacje dla gości.
+        </p>
+      </section>
+
+      <section id="instrukcja" className="section">
+        <div className="sectionHeader">
+          <p className="sectionKicker">Instrukcja obsługi domu</p>
+          <h2>Wszystko, co gość powinien wiedzieć</h2>
+        </div>
+        <div className="cards">
+          <div className="card"><h3>Przyjazd</h3><p>Check-in, klucze, dojazd i parkowanie.</p></div>
+          <div className="card"><h3>Dom</h3><p>Ogrzewanie, światło, WiFi, kuchnia i wyposażenie.</p></div>
+          <div className="card"><h3>Bezpieczeństwo</h3><p>Zasady ognia, lasu, odpadów i ciszy nocnej.</p></div>
+        </div>
+      </section>
+
+      <section id="rezerwacja" className="section reservation">
+        <div>
+          <p className="sectionKicker">Rezerwacja</p>
+          <h2>Zapytaj o dostępny termin</h2>
+          <p>
+            Formularz może na początku wysyłać wiadomość na e-mail. Później można
+            podpiąć kalendarz, system płatności lub zewnętrzny system rezerwacji.
+          </p>
+        </div>
+
+        <form className="form">
+          <input placeholder="Imię i nazwisko" />
+          <input placeholder="E-mail" type="email" />
+          <input placeholder="Telefon" />
+          <input placeholder="Planowany termin" />
+          <textarea placeholder="Wiadomość" rows={5} />
+          <button type="button">Wyślij zapytanie</button>
+        </form>
+      </section>
+
+      <section id="kontakt" className="section contact">
+        <p className="sectionKicker">Kontakt</p>
+        <h2>Kontakt</h2>
+        <p>E-mail: kontakt@sovahouse.pl</p>
+        <p>Telefon: wpisz numer kontaktowy</p>
+        <p>Lokalizacja: Kruczy Borek</p>
       </section>
     </main>
   );
