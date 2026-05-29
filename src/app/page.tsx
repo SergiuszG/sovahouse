@@ -54,7 +54,7 @@ export default function Home() {
       <section id="galeria" className="section">
         <div className="sectionHeader">
           <p className="sectionKicker">Galeria</p>
-          <h2>Zdjęcia, które później podmienisz na własne</h2>
+          <h2>Zdjęcia</h2>
         </div>
         <div className="galleryGrid">
           {galleryImages.map((image, index) => (
