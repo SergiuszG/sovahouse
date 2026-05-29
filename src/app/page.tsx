@@ -68,7 +68,7 @@ export default function Home() {
           <p className="sectionKicker">Lokalne atrakcje</p>
           <h2>Mapa miejsc wartych zobaczenia</h2>
           <p>
-            Tu znajdzie się opis lokalnych atrakcji, tras spacerowych, miejsc nad
+            Opis lokalnych atrakcji, tras spacerowych, miejsc nad
             wodą, restauracji, punktów widokowych i Twoja własna mapa Google My Maps.
           </p>
         </div>
@@ -124,8 +124,8 @@ export default function Home() {
       <section id="kontakt" className="section contact">
         <p className="sectionKicker">Kontakt</p>
         <h2>Kontakt</h2>
-        <p>E-mail: kontakt@sovahouse.pl</p>
-        <p>Telefon: wpisz numer kontaktowy</p>
+        <p>E-mail: kruczy.borek@gmail.com</p>
+        <p>Telefon: +48 609 703 338</p>
         <p>Lokalizacja: Kruczy Borek</p>
       </section>
     </main>
