@@ -92,7 +92,15 @@ export default function Home() {
       }}
     />
   </a>
-
+<p>
+  <a
+    href="https://www.google.com/maps/d/u/0/viewer?mid=1z3-SDY6JPCpqJE6mYiFizekLls7p8ZE&ll=52.71921613478716%2C20.9495643&z=10"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    🦉 Otwórz mapę okolicy
+  </a>
+</p>
   <small>Zeskanuj kod QR telefonem</small>
 </div>
       </section>
