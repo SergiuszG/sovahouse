@@ -73,11 +73,28 @@ export default function Home() {
           </p>
         </div>
         <div className="placeholderCard">
-          <span>Tu będzie Twoja mapa</span>
-          <small>miejsce na Google My Maps</small>
-          <div className="qrBox">QR</div>
-          <small>miejsce na kod QR do mapy</small>
-        </div>
+  <span>Mapa okolicy Sova House</span>
+  <small>Restauracje, spacery i atrakcje</small>
+
+  <a
+    href="https://www.sovahouse.pl/https_www_sovahouse_pl.png"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <img
+      src="/https_www_sovahouse_pl.png"
+      alt="Kod QR do mapy okolicy Sova House"
+      style={{
+        width: "220px",
+        maxWidth: "100%",
+        height: "auto",
+        margin: "20px 0",
+      }}
+    />
+  </a>
+
+  <small>Zeskanuj kod QR telefonem</small>
+</div>
       </section>
 
       <section id="rejsy" className="section feature">
