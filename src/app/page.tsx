@@ -82,7 +82,7 @@ export default function Home() {
     rel="noopener noreferrer"
   >
     <img
-      src="/https_www_sovahouse_pl.png"
+      href="https://www.google.com/maps/d/u/0/viewer?mid=1z3-SDY6JPCpqJE6mYiFizekLls7p8ZE&ll=52.71921613478716%2C20.9495643&z=10"
       alt="Kod QR do mapy okolicy Sova House"
       style={{
         width: "220px",
