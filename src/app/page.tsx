@@ -76,22 +76,23 @@ export default function Home() {
   <span>Mapa okolicy Sova House</span>
   <small>Restauracje, spacery i atrakcje</small>
 
-  <a
-    href="https://www.sovahouse.pl/https_www_sovahouse_pl.png"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <img
-      href="https://www.google.com/maps/d/u/0/viewer?mid=1z3-SDY6JPCpqJE6mYiFizekLls7p8ZE&ll=52.71921613478716%2C20.9495643&z=10"
-      alt="Kod QR do mapy okolicy Sova House"
-      style={{
-        width: "220px",
-        maxWidth: "100%",
-        height: "auto",
-        margin: "20px 0",
-      }}
-    />
-  </a>
+ <a
+  href="https://www.google.com/maps/d/u/0/viewer?mid=1z3-SDY6JPCpqJE6mYiFizekLls7p8ZE&ll=52.71921613478716%2C20.9495643&z=10"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <img
+    src="/mapa_okolicy_sova_house.png"
+    alt="Kod QR do mapy okolicy Sova House"
+    style={{
+      width: "220px",
+      maxWidth: "100%",
+      height: "auto",
+      margin: "20px 0",
+    }}
+  />
+</a>
+
 <p>
   <a
     href="https://www.google.com/maps/d/u/0/viewer?mid=1z3-SDY6JPCpqJE6mYiFizekLls7p8ZE&ll=52.71921613478716%2C20.9495643&z=10"
@@ -101,7 +102,8 @@ export default function Home() {
     🦉 Otwórz mapę okolicy
   </a>
 </p>
-  <small>Zeskanuj kod QR telefonem</small>
+
+<small>Zeskanuj kod QR telefonem</small>
 </div>
       </section>
 
