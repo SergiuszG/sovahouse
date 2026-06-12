@@ -179,8 +179,19 @@ export default function Home() {
         <p className="sectionKicker">Kontakt</p>
         <h2>Kontakt</h2>
         <p>E-mail: kruczy.borek@gmail.com</p>
-        <p>Telefon: +48 609 703 338</p>
-        <p>Lokalizacja: Kruczy Borek</p>
+<p>Telefon: +48 609 703 338</p>
+<p>Lokalizacja: Kruczy Borek</p>
+
+<p>
+  Facebook:{" "}
+  <a
+    href="https://www.facebook.com/profile.php?id=61580666498457"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Sova House
+  </a>
+</p>
       </section>
     </main>
   );
