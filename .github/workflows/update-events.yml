@@ -1,1 +1,34 @@
+name: Update events
 
+on:
+  schedule:
+    - cron: "0 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-events:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run events updater
+        run: npm run update-events
+
+      - name: Commit updated events
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Update events automatically"
+          file_pattern: public/events.json
