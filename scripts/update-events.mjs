@@ -12,7 +12,7 @@ const SOURCES = [
   },
   {
     name: "MCKiS Pułtusk",
-    url: "https://mckispultusk.pl/category/bez-kategorii/imprezy/",
+    url: "https://mckispultusk.pl/",
     place: "Pułtusk",
     parser: "wordpress",
   },
