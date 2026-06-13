@@ -393,11 +393,16 @@ const sourceEvents =
   source.parser === "wordpress"
     ? parseWordPressPosts(html, source)
     : parseEventBlocksFromPultusk(html, source);
-    console.log(
-      `Źródło "${source.name}": znaleziono ${sourceEvents.length} pasujących wydarzeń.`
-    );
 
-    foundEvents.push(...sourceEvents);
+console.log(
+  `Źródło "${source.name}": znaleziono ${sourceEvents.length} pasujących wydarzeń.`
+);
+
+for (const event of sourceEvents) {
+  console.log(`- ${event.date}: ${event.title}`);
+}
+
+foundEvents.push(...sourceEvents);
   }
 
   const allEvents = deduplicateEvents([...existingEvents, ...foundEvents])
