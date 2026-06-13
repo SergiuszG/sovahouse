@@ -1,1 +1,31 @@
-
+[
+  {
+    "title": "Wianki 2026",
+    "date": "2026-06-21",
+    "place": "Pułtusk",
+    "category": "wydarzenie plenerowe",
+    "description": "Pułtuska Noc Świętojańska nad Narwią.",
+    "url": "https://mckispultusk.pl/",
+    "source": "MCKiS Pułtusk"
+  },
+  {
+    "title": "Wystawa artystów pułtuskich „Teraz Pułtusk”",
+    "date": "2026-06-26",
+    "endDate": "2026-08-28",
+    "place": "Pułtusk",
+    "category": "wystawa",
+    "description": "Wystawa artystów pułtuskich w Galerii MCKiS.",
+    "url": "https://pultusk.pl/events/2026-06-26/",
+    "source": "Miasto i Gmina Pułtusk"
+  },
+  {
+    "title": "Pojezuickie piwnice magazynowe we Wzgórzu Abrahama",
+    "date": "2026-06-01",
+    "endDate": "2026-08-31",
+    "place": "Pułtusk",
+    "category": "zwiedzanie",
+    "description": "Historyczne piwnice i ekspozycja związana z dziedzictwem jezuitów w Pułtusku.",
+    "url": "https://muzeum.pultusk.pl/pojezuickie-piwnice-magazynowe-we-wzgorzu-abrahama/",
+    "source": "Muzeum Regionalne w Pułtusku"
+  }
+]
