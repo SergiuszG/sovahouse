@@ -1,3 +1,41 @@
+import eventsData from "../public/events.json";
+type EventItem = {
+  title: string;
+  date: string;
+  endDate?: string;
+  place: string;
+  category: string;
+  description: string;
+  url: string;
+  source: string;
+};
+
+const events = eventsData as EventItem[];
+
+function formatEventDate(date: string, endDate?: string) {
+  const start = new Date(date);
+  const end = endDate ? new Date(endDate) : null;
+
+  const formatter = new Intl.DateTimeFormat("pl-PL", {
+    day: "numeric",
+    month: "long",
+  });
+
+  if (end) {
+    return `${formatter.format(start)} – ${formatter.format(end)}`;
+  }
+
+  return formatter.format(start);
+}
+
+const upcomingEvents = events
+  .filter((event) => {
+    const eventEndDate = new Date(event.endDate || event.date);
+    return eventEndDate >= new Date();
+  })
+  .sort((a, b) => {
+    return new Date(a.date).getTime() - new Date(b.date).getTime();
+  });
 const galleryImages = [
   "https:/front domku.jpg",
   "https:/Wejscie i furtka.jpg",
