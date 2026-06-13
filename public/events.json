@@ -1,12 +1,24 @@
 [
   {
+    "title": "Pojezuickie piwnice magazynowe we Wzgórzu Abrahama",
+    "date": "2026-06-01",
+    "endDate": "2026-08-31",
+    "place": "Pułtusk",
+    "category": "zwiedzanie",
+    "description": "Historyczne piwnice i ekspozycja związana z dziedzictwem jezuitów w Pułtusku.",
+    "url": "https://muzeum.pultusk.pl/pojezuickie-piwnice-magazynowe-we-wzgorzu-abrahama/",
+    "source": "Muzeum Regionalne w Pułtusku",
+    "id": "2026-06-01-pojezuickie-piwnice-magazynowe-we-wzgorzu-abrahama-pu-tusk"
+  },
+  {
     "title": "Wianki 2026",
     "date": "2026-06-21",
     "place": "Pułtusk",
     "category": "wydarzenie plenerowe",
     "description": "Pułtuska Noc Świętojańska nad Narwią.",
     "url": "https://mckispultusk.pl/",
-    "source": "MCKiS Pułtusk"
+    "source": "MCKiS Pułtusk",
+    "id": "2026-06-21-wianki-2026-pu-tusk"
   },
   {
     "title": "Wystawa artystów pułtuskich „Teraz Pułtusk”",
@@ -16,16 +28,18 @@
     "category": "wystawa",
     "description": "Wystawa artystów pułtuskich w Galerii MCKiS.",
     "url": "https://pultusk.pl/events/2026-06-26/",
-    "source": "Miasto i Gmina Pułtusk"
+    "source": "Miasto i Gmina Pułtusk",
+    "id": "2026-06-26-wystawa-artystow-pu-tuskich-teraz-pu-tusk-pu-tusk"
   },
   {
-    "title": "Pojezuickie piwnice magazynowe we Wzgórzu Abrahama",
-    "date": "2026-06-01",
-    "endDate": "2026-08-31",
+    "id": "2026-06-26-wystawa-teraz-pu-tusk-pod-has-em-pu-tuskart-26-zapraszamy-do-udzia-u-pu-tusk",
+    "title": "Wystawa „TERAZ PUŁTUSK” pod hasłem PułtuskART’26 – zapraszamy do udziału",
+    "date": "2026-06-26",
+    "endDate": "2026-08-28",
     "place": "Pułtusk",
-    "category": "zwiedzanie",
-    "description": "Historyczne piwnice i ekspozycja związana z dziedzictwem jezuitów w Pułtusku.",
-    "url": "https://muzeum.pultusk.pl/pojezuickie-piwnice-magazynowe-we-wzgorzu-abrahama/",
-    "source": "Muzeum Regionalne w Pułtusku"
+    "category": "wydarzenie",
+    "description": "26 czerwca 26 czerwca @ 08:00 - 28 sierpnia @ 17:00",
+    "url": "https://pultusk.pl/event/wystawa-teraz-pultusk-pod-haslem-pultuskart26-zapraszamy-do-udzialu/",
+    "source": "Miasto i Gmina Pułtusk"
   }
 ]
