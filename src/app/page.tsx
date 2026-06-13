@@ -106,6 +106,48 @@ export default function Home() {
 <small>Zeskanuj kod QR telefonem</small>
 </div>
       </section>
+      <section className="route-card">
+  <div className="route-text">
+    <p className="eyebrow">Trasa rowerowa</p>
+
+    <h2>Sova House – Pułtusk – Grabówiec – Sova House</h2>
+
+    <p>
+      Krótka, poglądowa propozycja wycieczki rowerowej z Kruczego Borku
+      w stronę Pułtuska i Grabowca. Trasa prowadzi spokojnymi drogami
+      przez okolice Narwi i wraca do Sova House.
+    </p>
+
+    <ul>
+      <li>około 25,9 km</li>
+      <li>około 1 godz. 20 min jazdy według Google Maps</li>
+      <li>rysunek ma charakter poglądowy — nawigację otwórz w Google Maps</li>
+    </ul>
+
+    <a
+      className="route-button"
+      href="https://maps.app.goo.gl/AzeE97EyQgpm5YBN7"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Otwórz trasę w Google Maps
+    </a>
+  </div>
+
+  <a
+    className="route-image-link"
+    href="https://maps.app.goo.gl/AzeE97EyQgpm5YBN7"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Otwórz trasę rowerową w Google Maps"
+  >
+    <img
+      src="/trasa-rowerowa-pultusk-grabowiec.png"
+      alt="Poglądowa mapa trasy rowerowej Sova House – Pułtusk – Grabówiec – Sova House"
+      className="route-image"
+    />
+  </a>
+</section>
 
       <section id="rejsy" className="section feature">
         <p className="sectionKicker">Rejsy</p>
