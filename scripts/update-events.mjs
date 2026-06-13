@@ -70,6 +70,10 @@ const EXCLUDE_KEYWORDS = [
   "dzien dziecka",
   "food truck",
   "disco party",
+  "regulamin",
+"zajęcia przygotowujące",
+"zajecia przygotowujace",
+"nauki gry na pianinie",
 ];
 
 function stripHtml(html) {
