@@ -285,14 +285,24 @@ function parseWordPressPosts(html, source) {
       continue;
     }
 
-    const date =
-      parsePolishDate(plainBlock) ||
-      parsePolishDate(title) ||
-      parsePolishDate(url);
+    let date =
+  parsePolishDate(plainBlock) ||
+  parsePolishDate(title) ||
+  parsePolishDate(url);
 
-    if (!date) {
-      continue;
-    }
+const normalizedTitle = normalizeText(title);
+
+if (source.name === "MCKiS Pułtusk" && normalizedTitle.includes("wianki 2026")) {
+  date = "2026-06-21";
+}
+
+if (source.name === "MCKiS Pułtusk" && normalizedTitle.includes("oferta wakacyjna 2026")) {
+  date = "2026-06-26";
+}
+
+if (!date) {
+  continue;
+}
 
     const event = {
       id: makeId({
