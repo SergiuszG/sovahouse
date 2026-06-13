@@ -238,12 +238,30 @@ function parseEventBlocksFromPultusk(html, source) {
   return events;
 }
 
+function getDuplicateKey(event) {
+  const text = normalizeText(`${event.title} ${event.description || ""}`);
+
+  if (text.includes("teraz pultusk") || text.includes("pultuskart")) {
+    return `${event.date}-teraz-pultusk-${normalizeText(event.place)}`;
+  }
+
+  if (text.includes("wianki")) {
+    return `${event.date}-wianki-${normalizeText(event.place)}`;
+  }
+
+  if (text.includes("pojezuickie") || text.includes("wzgorze abrahama")) {
+    return `${event.date}-pojezuickie-piwnice-${normalizeText(event.place)}`;
+  }
+
+  return event.id || makeId(event);
+}
+
 function deduplicateEvents(events) {
   const seen = new Set();
   const result = [];
 
   for (const event of events) {
-    const key = event.id || makeId(event);
+    const key = getDuplicateKey(event);
 
     if (seen.has(key)) {
       continue;
@@ -252,13 +270,12 @@ function deduplicateEvents(events) {
     seen.add(key);
     result.push({
       ...event,
-      id: key,
+      id: event.id || makeId(event),
     });
   }
 
   return result;
 }
-
 async function fetchHtml(url) {
   const response = await fetch(url, {
     headers: {
