@@ -187,6 +187,41 @@ export default function Home() {
     />
   </a>
 </section>
+      <section id="wydarzenia" className="events-section">
+  <div className="section-heading">
+    <p className="eyebrow">Co dzieje się w okolicy</p>
+    <h2>Wydarzenia kulturalne</h2>
+    <p>
+      Wybrane koncerty, wystawy, spacery historyczne i lokalne wydarzenia
+      w Pułtusku, Serocku i nad Narwią. Przed wyjazdem warto sprawdzić
+      szczegóły u organizatora.
+    </p>
+  </div>
+
+  <div className="events-grid">
+    {upcomingEvents.map((event) => (
+      <article className="event-card" key={`${event.title}-${event.date}`}>
+        <p className="event-date">
+          {formatEventDate(event.date, event.endDate)}
+        </p>
+
+        <h3>{event.title}</h3>
+
+        <p className="event-place">{event.place}</p>
+
+        <p className="event-description">{event.description}</p>
+
+        <div className="event-footer">
+          <span>{event.source}</span>
+
+          <a href={event.url} target="_blank" rel="noopener noreferrer">
+            Szczegóły
+          </a>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>
 
       <section id="rejsy" className="section feature">
         <p className="sectionKicker">Rejsy</p>
