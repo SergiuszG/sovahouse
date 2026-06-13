@@ -8,6 +8,13 @@ const SOURCES = [
     name: "Miasto i Gmina Pułtusk",
     url: "https://pultusk.pl/events/",
     place: "Pułtusk",
+    parser: "pultusk",
+  },
+  {
+    name: "MCKiS Pułtusk",
+    url: "https://mckispultusk.pl/category/bez-kategorii/imprezy/",
+    place: "Pułtusk",
+    parser: "wordpress",
   },
 ];
 
@@ -247,6 +254,68 @@ function parseEventBlocksFromPultusk(html, source) {
 
   return events;
 }
+function parseWordPressPosts(html, source) {
+  const postBlocks = html.split(/<article|<h2|<h3/gi);
+  const events = [];
+
+  for (const rawBlock of postBlocks) {
+    const block = `<article${rawBlock}`;
+
+    const linkMatch = block.match(
+      /<a[^>]+href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/i
+    );
+
+    if (!linkMatch) {
+      continue;
+    }
+
+    const url = linkMatch[1]?.startsWith("http")
+      ? linkMatch[1]
+      : source.url;
+
+    const title = stripHtml(linkMatch[2]);
+
+    if (!title || title.length < 8) {
+      continue;
+    }
+
+    const plainBlock = stripHtml(block);
+
+    if (plainBlock.toLowerCase().includes("fotorelacja")) {
+      continue;
+    }
+
+    const date =
+      parsePolishDate(plainBlock) ||
+      parsePolishDate(title) ||
+      parsePolishDate(url);
+
+    if (!date) {
+      continue;
+    }
+
+    const event = {
+      id: makeId({
+        title,
+        date,
+        place: source.place,
+      }),
+      title,
+      date,
+      place: source.place,
+      category: "wydarzenie",
+      description: getShortDescription(plainBlock.replace(title, "")),
+      url,
+      source: source.name,
+    };
+
+    if (shouldIncludeEvent(event)) {
+      events.push(event);
+    }
+  }
+
+  return events;
+}
 function getDuplicateKey(event) {
   const text = normalizeText(`${event.title} ${event.description || ""}`);
 
@@ -319,8 +388,11 @@ async function main() {
     console.log(`Pobieram: ${source.url}`);
 
     const html = await fetchHtml(source.url);
-    const sourceEvents = parseEventBlocksFromPultusk(html, source);
 
+const sourceEvents =
+  source.parser === "wordpress"
+    ? parseWordPressPosts(html, source)
+    : parseEventBlocksFromPultusk(html, source);
     console.log(
       `Źródło "${source.name}": znaleziono ${sourceEvents.length} pasujących wydarzeń.`
     );
