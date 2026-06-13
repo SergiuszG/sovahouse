@@ -237,7 +237,6 @@ function parseEventBlocksFromPultusk(html, source) {
 
   return events;
 }
-
 function getDuplicateKey(event) {
   const text = normalizeText(`${event.title} ${event.description || ""}`);
 
