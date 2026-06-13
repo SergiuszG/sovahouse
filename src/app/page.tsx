@@ -15,6 +15,7 @@ export default function Home() {
         <div className="navLinks">
           <a href="#galeria">Galeria</a>
           <a href="#atrakcje">Lokalne atrakcje</a>
+          <a href="#wydarzenia">Wydarzenia</a>
           <a href="#rejsy">Rejsy</a>
           <a href="#instrukcja">Instrukcja</a>
           <a href="#rezerwacja">Rezerwacja</a>
