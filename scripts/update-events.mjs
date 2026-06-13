@@ -82,6 +82,8 @@ function stripHtml(html) {
 function normalizeText(text) {
   return text
     .toLowerCase()
+    .replace(/ł/g, "l")
+    .replace(/Ł/g, "l")
     .normalize("NFD")
     .replace(/\p{Diacritic}/gu, "");
 }
