@@ -1,4 +1,4 @@
-import eventsData from "../public/events.json";
+import eventsData from "../../public/events.json";
 type EventItem = {
   title: string;
   date: string;
