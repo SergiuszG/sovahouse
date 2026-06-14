@@ -16,6 +16,12 @@ const SOURCES = [
     place: "Pułtusk",
     parser: "wordpress",
   },
+  {
+    name: "Muzeum Regionalne w Pułtusku",
+    url: "https://muzeum.pultusk.pl/",
+    place: "Pułtusk",
+    parser: "wordpress",
+  },
 ];
 
 const INCLUDE_KEYWORDS = [
@@ -24,7 +30,11 @@ const INCLUDE_KEYWORDS = [
   "organowy",
   "wystawa",
   "muzeum",
+  "muzealny",
+  "muzealne",
   "zwiedzanie",
+  "spotkanie",
+  "spotkania",
   "spacer",
   "historyczny",
   "teatr",
@@ -39,8 +49,11 @@ const INCLUDE_KEYWORDS = [
   "kosciol",
   "piwnice",
   "pojezuickie",
+  "noc muzeów",
+  "noc muzeow",
   "wzgórze abrahama",
   "wzgorze abrahama",
+  "abrahama",
   "dom polonii",
   "galeria",
   "mckis",
