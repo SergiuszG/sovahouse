@@ -24,6 +24,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Test events updater
+        run: npm test
+
       - name: Run events updater
         run: npm run update-events
 
