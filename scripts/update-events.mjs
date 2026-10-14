@@ -1,5 +1,6 @@
 import fs from "fs/promises";
 import path from "path";
+import { pathToFileURL } from "url";
 
 const eventsPath = path.join(process.cwd(), "public", "events.json");
 
@@ -381,8 +382,9 @@ function deduplicateEvents(events) {
 
   return result;
 }
-async function fetchHtml(url) {
-  const response = await fetch(url, {
+export async function fetchHtml(url, { fetchImpl = fetch, timeoutMs = 20_000 } = {}) {
+  const response = await fetchImpl(url, {
+    signal: AbortSignal.timeout(timeoutMs),
     headers: {
       "User-Agent":
         "SovaHouseEventsBot/1.0 (+https://www.sovahouse.pl; wydarzenia lokalne)",
@@ -397,60 +399,95 @@ async function fetchHtml(url) {
   return response.text();
 }
 
-async function readExistingEvents() {
+async function readExistingEvents(filePath) {
   try {
-    const rawEvents = await fs.readFile(eventsPath, "utf-8");
-    return JSON.parse(rawEvents);
+    const events = JSON.parse(await fs.readFile(filePath, "utf-8"));
+    if (!Array.isArray(events) || events.some((event) =>
+      !event || typeof event !== "object" ||
+      typeof event.title !== "string" || typeof event.place !== "string" ||
+      typeof event.date !== "string" || !Number.isFinite(Date.parse(event.date)) ||
+      (event.endDate !== undefined && !Number.isFinite(Date.parse(event.endDate)))
+    )) {
+      throw new Error("events.json nie zawiera poprawnej listy wydarzeń");
+    }
+    return events;
   } catch (error) {
-    console.warn("Nie udało się odczytać events.json. Tworzę nową listę.");
-    return [];
+    // Only a missing file is safe to initialize. Never overwrite unreadable data.
+    if (error.code === "ENOENT") return [];
+    throw error;
   }
 }
 
-async function main() {
-  const existingEvents = await readExistingEvents();
+function describeError(error) {
+  return [error, error.cause].filter(Boolean)
+    .map((item) => `${item.name || "Error"}${item.code ? ` [${item.code}]` : ""}: ${item.message}`)
+    .join("; ");
+}
+
+export async function main({
+  filePath = eventsPath,
+  fetchImpl = fetch,
+  timeoutMs = 20_000,
+  now = new Date(),
+  logger = console,
+} = {}) {
+  const existingEvents = await readExistingEvents(filePath);
   const foundEvents = [];
+  let successfulSources = 0;
 
   for (const source of SOURCES) {
-    console.log(`Pobieram: ${source.url}`);
-
-    const html = await fetchHtml(source.url);
-
-const sourceEvents =
-  source.parser === "wordpress"
-    ? parseWordPressPosts(html, source)
-    : parseEventBlocksFromPultusk(html, source);
-
-console.log(
-  `Źródło "${source.name}": znaleziono ${sourceEvents.length} pasujących wydarzeń.`
-);
-
-for (const event of sourceEvents) {
-  console.log(`- ${event.date}: ${event.title}`);
-}
-
-foundEvents.push(...sourceEvents);
+    logger.log(`Pobieram: ${source.url}`);
+    try {
+      const html = await fetchHtml(source.url, { fetchImpl, timeoutMs });
+      const sourceEvents = source.parser === "wordpress"
+        ? parseWordPressPosts(html, source)
+        : parseEventBlocksFromPultusk(html, source);
+      successfulSources += 1;
+      logger.log(
+        `Źródło "${source.name}": znaleziono ${sourceEvents.length} pasujących wydarzeń.`
+      );
+      for (const event of sourceEvents) {
+        logger.log(`- ${event.date}: ${event.title}`);
+      }
+      foundEvents.push(...sourceEvents);
+    } catch (error) {
+      logger.warn(
+        `Źródło "${source.name}" (${source.url}) niedostępne: ${describeError(error)}. ` +
+        "Kontynuuję z pozostałymi źródłami; zachowuję wcześniej zapisane aktualne wydarzenia."
+      );
+    }
   }
 
-  const allEvents = deduplicateEvents([...existingEvents, ...foundEvents])
-    .filter((event) => {
-      const eventEndDate = new Date(event.endDate || event.date);
-      const today = new Date();
+  logger.log(`Źródła: ${successfulSources}/${SOURCES.length} poprawnie pobranych, ` +
+    `${SOURCES.length - successfulSources} z błędem.`);
+  if (successfulSources === 0) {
+    throw new Error("Wszystkie źródła zawiodły. events.json pozostaje bez zmian.");
+  }
 
-      today.setHours(0, 0, 0, 0);
-      return eventEndDate >= today;
-    })
+  // Keep cached events from every source, including a temporarily unavailable one.
+  // Remove only expired events; multi-day events remain until their end date.
+  const today = new Date(now);
+  today.setHours(0, 0, 0, 0);
+  const allEvents = deduplicateEvents([...existingEvents, ...foundEvents])
+    .filter((event) => new Date(event.endDate || event.date) >= today)
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
-  await fs.writeFile(eventsPath, JSON.stringify(allEvents, null, 2) + "\n");
-
-  console.log(
-    `Gotowe. W events.json zapisano ${allEvents.length} aktualnych wydarzeń.`
-  );
+  // Replace atomically so an interrupted write cannot truncate the cache.
+  const temporaryPath = `${filePath}.${process.pid}.tmp`;
+  try {
+    await fs.writeFile(temporaryPath, JSON.stringify(allEvents, null, 2) + "\n");
+    await fs.rename(temporaryPath, filePath);
+  } finally {
+    await fs.rm(temporaryPath, { force: true });
+  }
+  logger.log(`Gotowe. W events.json zapisano ${allEvents.length} aktualnych wydarzeń.`);
+  return allEvents;
 }
 
-main().catch((error) => {
-  console.error("Błąd aktualizacji wydarzeń:");
-  console.error(error);
-  process.exit(1);
-});
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main().catch((error) => {
+    console.error("Błąd aktualizacji wydarzeń:");
+    console.error(error);
+    process.exitCode = 1;
+  });
+}
